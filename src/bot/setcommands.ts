@@ -90,6 +90,10 @@ function getPrivateChatCommands(): BotCommand[] {
       command: "wallet",
       description: "Register your wallet address",
     },
+    {
+      command: "ubiquityos",
+      description: "Ask UbiquityOS a question",
+    },
   ];
 }
 
@@ -103,6 +107,10 @@ function getPrivateChatAdminCommands(): BotCommand[] {
       command: "setwebhook",
       description: "Set the webhook URL",
     },
+    {
+      command: "newtask",
+      description: "Create a new task",
+    },
   ];
 }
 
@@ -111,6 +119,14 @@ function getGroupChatCommands(): BotCommand[] {
     {
       command: "ban",
       description: "Ban a user",
+    },
+    {
+      command: "ubiquityos",
+      description: "Ask UbiquityOS a question",
+    },
+    {
+      command: "newtask",
+      description: "Create a new task",
     },
   ];
 }

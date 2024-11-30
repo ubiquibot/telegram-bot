@@ -23,6 +23,8 @@ import { welcomeFeature } from "./features/start-command";
 import { unhandledFeature } from "./features/helpers/unhandled";
 import { Context } from "../types";
 import { session } from "./middlewares/session";
+import { askFeature } from "./features/commands/shared/ask-command";
+import { newTaskFeature } from "./features/commands/shared/task-creation";
 
 interface Dependencies {
   config: Context["env"];
@@ -45,6 +47,9 @@ export async function createBot(token: string, dependencies: Dependencies, optio
   const bot = new TelegramBot(token, {
     ...options.botConfig,
     ContextConstructor: await createContextConstructor(dependencies),
+    client: {
+      timeoutSeconds: 500,
+    },
   });
 
   // Error handling
@@ -88,6 +93,10 @@ export async function createBot(token: string, dependencies: Dependencies, optio
 
   // Group commands
   bot.use(banCommand);
+
+  // shared commands
+  bot.use(askFeature);
+  bot.use(newTaskFeature);
 
   // Unhandled command handler
   bot.use(unhandledFeature);
